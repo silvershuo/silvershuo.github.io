@@ -1,6 +1,8 @@
 # About
 This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
 
+Currently being explored and lightly maintained with help from **折光**.
+
 ::github{repo="saicaca/fuwari"}
 
 > ### Sources of images used in this site
