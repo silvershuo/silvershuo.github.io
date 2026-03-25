@@ -1,139 +1,140 @@
 <script lang="ts">
-	import { fly, scale } from "svelte/transition";
+import { fly, scale } from "svelte/transition";
 
-	type Palette = {
-		name: string;
-		surface: string;
-		surfaceStrong: string;
-		accent: string;
-		accentSoft: string;
-		text: string;
-		muted: string;
-		border: string;
-		glow: string;
-	};
+type Palette = {
+	name: string;
+	surface: string;
+	surfaceStrong: string;
+	accent: string;
+	accentSoft: string;
+	text: string;
+	muted: string;
+	border: string;
+	glow: string;
+};
 
-	const defaultLine =
-		"A small interruption for the kind of afternoon that needs one.";
-	const defaultMood = "Status: a little under-stimulated.";
+const defaultLine =
+	"A small interruption for the kind of afternoon that needs one.";
+const defaultMood = "Status: a little under-stimulated.";
 
-	const lines = [
-		"Start small. One click is already enough progress.",
-		"If the day is noisy, let this be one quiet second.",
-		"Your attention is not broken. It just needed a nudge.",
-		"Water break, then another click. That feels fair.",
-		"Tiny rituals count more than they look like they do.",
-		"This is allowed to be simple.",
-		"Momentum can be this soft and still be real.",
-		"A little color helps. So does one more try.",
-	];
+const lines = [
+	"Start small. One click is already enough progress.",
+	"If the day is noisy, let this be one quiet second.",
+	"Your attention is not broken. It just needed a nudge.",
+	"Water break, then another click. That feels fair.",
+	"Tiny rituals count more than they look like they do.",
+	"This is allowed to be simple.",
+	"Momentum can be this soft and still be real.",
+	"A little color helps. So does one more try.",
+];
 
-	const moods = [
-		defaultMood,
-		"Status: boredom slipping a notch.",
-		"Status: something is warming back up.",
-		"Status: attention drifting into place.",
-		"Status: faintly recharged.",
-	];
+const moods = [
+	defaultMood,
+	"Status: boredom slipping a notch.",
+	"Status: something is warming back up.",
+	"Status: attention drifting into place.",
+	"Status: faintly recharged.",
+];
 
-	const palettes: Palette[] = [
-		{
-			name: "Cobalt Drift",
-			surface: "#10213f",
-			surfaceStrong: "#081326",
-			accent: "#7dc4ff",
-			accentSoft: "#d7eeff",
-			text: "#f5f9ff",
-			muted: "#bed2ee",
-			border: "rgba(169, 210, 255, 0.26)",
-			glow: "rgba(80, 154, 255, 0.38)",
-		},
-		{
-			name: "Rose Signal",
-			surface: "#30142d",
-			surfaceStrong: "#170a17",
-			accent: "#ff9fb9",
-			accentSoft: "#ffe2ea",
-			text: "#fff7fb",
-			muted: "#efc7d7",
-			border: "rgba(255, 182, 208, 0.22)",
-			glow: "rgba(255, 114, 171, 0.35)",
-		},
-		{
-			name: "Quiet Mint",
-			surface: "#122b29",
-			surfaceStrong: "#081614",
-			accent: "#8de3c7",
-			accentSoft: "#dbfff2",
-			text: "#f2fffa",
-			muted: "#b9e7da",
-			border: "rgba(152, 229, 205, 0.24)",
-			glow: "rgba(94, 220, 185, 0.34)",
-		},
-		{
-			name: "Amber Static",
-			surface: "#342112",
-			surfaceStrong: "#171006",
-			accent: "#ffd27a",
-			accentSoft: "#fff1d1",
-			text: "#fffaf0",
-			muted: "#ecd7ae",
-			border: "rgba(255, 221, 161, 0.22)",
-			glow: "rgba(255, 186, 74, 0.32)",
-		},
-	];
+const palettes: Palette[] = [
+	{
+		name: "Cobalt Drift",
+		surface: "#10213f",
+		surfaceStrong: "#081326",
+		accent: "#7dc4ff",
+		accentSoft: "#d7eeff",
+		text: "#f5f9ff",
+		muted: "#bed2ee",
+		border: "rgba(169, 210, 255, 0.26)",
+		glow: "rgba(80, 154, 255, 0.38)",
+	},
+	{
+		name: "Rose Signal",
+		surface: "#30142d",
+		surfaceStrong: "#170a17",
+		accent: "#ff9fb9",
+		accentSoft: "#ffe2ea",
+		text: "#fff7fb",
+		muted: "#efc7d7",
+		border: "rgba(255, 182, 208, 0.22)",
+		glow: "rgba(255, 114, 171, 0.35)",
+	},
+	{
+		name: "Quiet Mint",
+		surface: "#122b29",
+		surfaceStrong: "#081614",
+		accent: "#8de3c7",
+		accentSoft: "#dbfff2",
+		text: "#f2fffa",
+		muted: "#b9e7da",
+		border: "rgba(152, 229, 205, 0.24)",
+		glow: "rgba(94, 220, 185, 0.34)",
+	},
+	{
+		name: "Amber Static",
+		surface: "#342112",
+		surfaceStrong: "#171006",
+		accent: "#ffd27a",
+		accentSoft: "#fff1d1",
+		text: "#fffaf0",
+		muted: "#ecd7ae",
+		border: "rgba(255, 221, 161, 0.22)",
+		glow: "rgba(255, 186, 74, 0.32)",
+	},
+];
 
-	let count = 0;
-	let paletteIndex = 0;
-	let line = defaultLine;
-	let mood = defaultMood;
-	let lineKey = 0;
-	let countKey = 0;
+let count = 0;
+let paletteIndex = 0;
+let line = defaultLine;
+let mood = defaultMood;
+let lineKey = 0;
+let countKey = 0;
 
-	const pickLine = (previous: string) => {
-		if (lines.length === 1) return lines[0];
+const pickLine = (previous: string) => {
+	if (lines.length === 1) return lines[0];
 
-		let next = previous;
-		while (next === previous) {
-			next = lines[Math.floor(Math.random() * lines.length)];
-		}
-		return next;
-	};
-
-	function handleClick() {
-		count += 1;
-		line = pickLine(line);
-		mood = moods[Math.min(count, moods.length - 1)];
-		lineKey += 1;
-		countKey += 1;
+	let next = previous;
+	while (next === previous) {
+		next = lines[Math.floor(Math.random() * lines.length)];
 	}
+	return next;
+};
 
-	function cyclePalette() {
-		paletteIndex = (paletteIndex + 1) % palettes.length;
-	}
+function handleClick() {
+	count += 1;
+	line = pickLine(line);
+	mood = moods[Math.min(count, moods.length - 1)];
+	lineKey += 1;
+	countKey += 1;
+}
 
-	function resetPanel() {
-		count = 0;
-		paletteIndex = 0;
-		line = defaultLine;
-		mood = defaultMood;
-		lineKey += 1;
-		countKey += 1;
-	}
+function cyclePalette() {
+	paletteIndex = (paletteIndex + 1) % palettes.length;
+}
 
-	$: palette = palettes[paletteIndex];
-	$: ctaLabel = count === 0 ? "Click once" : count > 6 ? "Keep going" : "One more";
-	$: resetDisabled = count === 0 && paletteIndex === 0;
-	$: panelStyle = [
-		`--break-surface:${palette.surface}`,
-		`--break-surface-strong:${palette.surfaceStrong}`,
-		`--break-accent:${palette.accent}`,
-		`--break-accent-soft:${palette.accentSoft}`,
-		`--break-text:${palette.text}`,
-		`--break-muted:${palette.muted}`,
-		`--break-border:${palette.border}`,
-		`--break-glow:${palette.glow}`,
-	].join(";");
+function resetPanel() {
+	count = 0;
+	paletteIndex = 0;
+	line = defaultLine;
+	mood = defaultMood;
+	lineKey += 1;
+	countKey += 1;
+}
+
+$: palette = palettes[paletteIndex];
+$: ctaLabel =
+	count === 0 ? "Click once" : count > 6 ? "Keep going" : "One more";
+$: resetDisabled = count === 0 && paletteIndex === 0;
+$: panelStyle = [
+	`--break-surface:${palette.surface}`,
+	`--break-surface-strong:${palette.surfaceStrong}`,
+	`--break-accent:${palette.accent}`,
+	`--break-accent-soft:${palette.accentSoft}`,
+	`--break-text:${palette.text}`,
+	`--break-muted:${palette.muted}`,
+	`--break-border:${palette.border}`,
+	`--break-glow:${palette.glow}`,
+].join(";");
 </script>
 
 <section class="break-card" style={panelStyle} aria-label="Bored click mini game">
