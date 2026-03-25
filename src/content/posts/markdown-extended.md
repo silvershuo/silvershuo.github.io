@@ -2,14 +2,15 @@
 title: Markdown 扩展功能
 published: 2024-05-01
 updated: 2024-11-29
-description: '进一步了解 Fuwari 中支持的 Markdown 扩展能力'
-image: ''
+description: "进一步了解 Fuwari 中支持的 Markdown 扩展能力。"
+image: ""
 tags: [示例, Markdown, Fuwari]
-category: '示例'
-draft: false 
+category: 示例
+draft: false
 ---
 
 ## GitHub 仓库卡片
+
 你可以插入链接到 GitHub 仓库的动态卡片。页面加载时，仓库信息会通过 GitHub API 拉取。
 
 ::github{repo="Fabrizz/MMM-OnSpotify"}
@@ -48,11 +49,11 @@ draft: false
 
 ```markdown
 :::note
-Highlights information that users should take into account, even when skimming.
+用于强调即使快速浏览时也值得注意的信息。
 :::
 
 :::tip
-Optional information to help a user be more successful.
+提供额外提示，帮助读者更顺利地完成操作。
 :::
 ```
 
@@ -87,9 +88,8 @@ Optional information to help a user be more successful.
 
 你可以在正文中加入剧透折叠，折叠内容同样支持 **Markdown** 语法。
 
-这段内容 :spoiler[被藏起来了 **ayyy**]！
+这段内容 :spoiler[被暂时藏起来了 **一下**]！
 
 ```markdown
-这段内容 :spoiler[被藏起来了 **ayyy**]！
-
+这段内容 :spoiler[被暂时藏起来了 **一下**]！
 ```

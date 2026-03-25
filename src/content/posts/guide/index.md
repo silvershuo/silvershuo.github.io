@@ -8,7 +8,7 @@ category: 指南
 draft: false
 ---
 
-> 封面图来源：[Source](https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/208fc754-890d-4adb-9753-2c963332675d/width=2048/01651-1456859105-(colour_1.5),girl,_Blue,yellow,green,cyan,purple,red,pink,_best,8k,UHD,masterpiece,male%20focus,%201boy,gloves,%20ponytail,%20long%20hair,.jpeg)
+> 封面图来源：[来源](https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/208fc754-890d-4adb-9753-2c963332675d/width=2048/01651-1456859105-(colour_1.5),girl,_Blue,yellow,green,cyan,purple,red,pink,_best,8k,UHD,masterpiece,male%20focus,%201boy,gloves,%20ponytail,%20long%20hair,.jpeg)
 
 这个博客模板基于 [Astro](https://astro.build/) 构建。如果这篇指南没有提到某些内容，通常都可以在 [Astro 文档](https://docs.astro.build/) 里找到答案。
 
@@ -27,7 +27,7 @@ draft: false
 ```
 
 | 属性 | 说明 |
-|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------|------|
 | `title` | 文章标题。 |
 | `published` | 文章发布时间。 |
 | `description` | 文章的简短描述，会显示在首页列表中。 |

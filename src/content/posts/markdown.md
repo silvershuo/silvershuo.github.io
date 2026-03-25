@@ -37,14 +37,14 @@ draft: false
 
 再注意一次，实际文本内容是从左侧缩进 4 个字符开始的。下面是一段代码示例：
 
-    # Let me re-iterate ...
+    # 再重复一遍……
     for i in 1 .. 10 { do-something(i) }
 
 正如你已经猜到的，这里使用了 4 个空格缩进。顺带一提，如果你不想靠缩进来表示代码块，也可以使用围栏代码块：
 
 ```
 define foobar() {
-    print "Welcome to flavor country!";
+    print "欢迎来到示例代码区！";
 }
 ```
 
@@ -52,9 +52,9 @@ define foobar() {
 
 ```python
 import time
-# Quick, count to ten!
+# 快一点，数到十！
 for i in range(10):
-    # (but not *too* quick)
+    # 但也别太快
     time.sleep(0.5)
     print i
 ```
@@ -73,13 +73,13 @@ for i in range(10):
 
 3. 把所有东西倒进锅里，然后按照下面的流程操作：
 
-        find wooden spoon
-        uncover pot
-        stir
-        cover pot
-        balance wooden spoon precariously on pot handle
-        wait 10 minutes
-        goto first step (or shut off burner when done)
+        找到木勺
+        打开锅盖
+        搅拌
+        盖上锅盖
+        小心地把木勺架在锅柄上
+        等 10 分钟
+        回到第一步（或者煮好后关火）
 
     小心别碰到木勺，不然它会掉下来。
 
@@ -91,13 +91,13 @@ for i in range(10):
 
 表格也可以写成这样：
 
-size material color
+尺码 材质 颜色
 
 ---
 
-9 leather brown
-10 hemp canvas natural
-11 glass transparent
+9 皮革 棕色
+10 麻布 原色
+11 玻璃 透明
 
 表：鞋子、尺码，以及它们的材质
 
@@ -105,17 +105,17 @@ size material color
 
 ---
 
-keyword text
+关键词 内容
 
 ---
 
-red Sunsets, apples, and
-other red or reddish
-things.
+红色 日落、苹果，以及
+其他偏红的
+东西。
 
-green Leaves, grass, frogs
-and other things it's
-not easy being.
+绿色 叶子、草地、青蛙，
+还有那些
+很难说是不是绿色的东西。
 
 ---
 
@@ -125,11 +125,13 @@ not easy being.
 
 下面是定义列表：
 
-apples
+苹果
 : 适合拿来做苹果泥。
-oranges
+
+橙子
 : 柑橘类水果！
-tomatoes
+
+番茄
 : tomato 这个词里本来就没有多余的 “e”。
 
 同样地，文本采用 4 个空格缩进。（如果想让排版更松一些，可以在每组术语和解释之间空一行。）
@@ -142,7 +144,7 @@ tomatoes
 
 图片也可以这样写：
 
-[//]: # (![example image]&#40;./demo-banner.png "An exemplary image"&#41;)
+[//]: # (![示例图片]&#40;./demo-banner.png "一张示例图片"&#41;)
 
 行内数学公式可以这样写：$\omega = d\phi / dt$。块级数学公式需要单独占一行，并用双美元符号包起来：
 
