@@ -12,14 +12,14 @@ import { h } from "hastscript";
 export function GithubCardComponent(properties, children) {
 	if (Array.isArray(children) && children.length !== 0)
 		return h("div", { class: "hidden" }, [
-			'Invalid directive. ("github" directive must be leaf type "::github{repo="owner/repo"}")',
+			'无效的指令。（"github" 指令必须使用叶子节点语法 "::github{repo="owner/repo"}"）',
 		]);
 
 	if (!properties.repo || !properties.repo.includes("/"))
 		return h(
 			"div",
 			{ class: "hidden" },
-			'Invalid repository. ("repo" attributte must be in the format "owner/repo")',
+			'无效的仓库地址。（"repo" 属性必须采用 "owner/repo" 格式）',
 		);
 
 	const repo = properties.repo;
@@ -29,7 +29,7 @@ export function GithubCardComponent(properties, children) {
 	const nLanguage = h(
 		`span#${cardUuid}-language`,
 		{ class: "gc-language" },
-		"Waiting...",
+		"加载中...",
 	);
 
 	const nTitle = h("div", { class: "gc-titlebar" }, [
@@ -47,7 +47,7 @@ export function GithubCardComponent(properties, children) {
 	const nDescription = h(
 		`div#${cardUuid}-description`,
 		{ class: "gc-description" },
-		"Waiting for api.github.com...",
+		"正在等待 api.github.com 响应...",
 	);
 
 	const nStars = h(`div#${cardUuid}-stars`, { class: "gc-stars" }, "00K");
@@ -59,14 +59,14 @@ export function GithubCardComponent(properties, children) {
 		{ type: "text/javascript", defer: true },
 		`
       fetch('https://api.github.com/repos/${repo}', { referrerPolicy: "no-referrer" }).then(response => response.json()).then(data => {
-        document.getElementById('${cardUuid}-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "Description not set";
-        document.getElementById('${cardUuid}-language').innerText = data.language;
-        document.getElementById('${cardUuid}-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll("\u202f", '');
-        document.getElementById('${cardUuid}-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll("\u202f", '');
+        document.getElementById('${cardUuid}-description').innerText = data.description?.replace(/:[a-zA-Z0-9_]+:/g, '') || "暂无描述";
+        document.getElementById('${cardUuid}-language').innerText = data.language || "未知";
+        document.getElementById('${cardUuid}-forks').innerText = Intl.NumberFormat('zh-CN', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll("\u202f", '');
+        document.getElementById('${cardUuid}-stars').innerText = Intl.NumberFormat('zh-CN', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll("\u202f", '');
         const avatarEl = document.getElementById('${cardUuid}-avatar');
         avatarEl.style.backgroundImage = 'url(' + data.owner.avatar_url + ')';
         avatarEl.style.backgroundColor = 'transparent';
-        document.getElementById('${cardUuid}-license').innerText = data.license?.spdx_id || "no-license";
+        document.getElementById('${cardUuid}-license').innerText = data.license?.spdx_id || "无许可证";
         document.getElementById('${cardUuid}-card').classList.remove("fetch-waiting");
         console.log("[GITHUB-CARD] Loaded card for ${repo} | ${cardUuid}.")
       }).catch(err => {

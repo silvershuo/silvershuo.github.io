@@ -13,32 +13,31 @@ type Palette = {
 	glow: string;
 };
 
-const defaultLine =
-	"A small interruption for the kind of afternoon that needs one.";
-const defaultMood = "Status: a little under-stimulated.";
+const defaultLine = "给有点疲惫的下午，一次很小的打断。";
+const defaultMood = "状态：还有一点提不起劲。";
 
 const lines = [
-	"Start small. One click is already enough progress.",
-	"If the day is noisy, let this be one quiet second.",
-	"Your attention is not broken. It just needed a nudge.",
-	"Water break, then another click. That feels fair.",
-	"Tiny rituals count more than they look like they do.",
-	"This is allowed to be simple.",
-	"Momentum can be this soft and still be real.",
-	"A little color helps. So does one more try.",
+	"先从很小的一步开始。点一下也算进展。",
+	"如果今天有点吵，就把这里当作一秒安静。",
+	"你的注意力没有坏掉，它只是需要被轻轻推一下。",
+	"先去喝口水，再点一下，这很公平。",
+	"小小的仪式感，比看起来更有用。",
+	"简单一点也完全没问题。",
+	"这种温柔的势头，也是真的势头。",
+	"一点颜色会有帮助，再试一下也会。",
 ];
 
 const moods = [
 	defaultMood,
-	"Status: boredom slipping a notch.",
-	"Status: something is warming back up.",
-	"Status: attention drifting into place.",
-	"Status: faintly recharged.",
+	"状态：无聊感稍微退了一格。",
+	"状态：有点重新热起来了。",
+	"状态：注意力慢慢回来了。",
+	"状态：电量微微回升。",
 ];
 
 const palettes: Palette[] = [
 	{
-		name: "Cobalt Drift",
+		name: "钴蓝漂流",
 		surface: "#10213f",
 		surfaceStrong: "#081326",
 		accent: "#7dc4ff",
@@ -49,7 +48,7 @@ const palettes: Palette[] = [
 		glow: "rgba(80, 154, 255, 0.38)",
 	},
 	{
-		name: "Rose Signal",
+		name: "玫瑰讯号",
 		surface: "#30142d",
 		surfaceStrong: "#170a17",
 		accent: "#ff9fb9",
@@ -60,7 +59,7 @@ const palettes: Palette[] = [
 		glow: "rgba(255, 114, 171, 0.35)",
 	},
 	{
-		name: "Quiet Mint",
+		name: "静谧薄荷",
 		surface: "#122b29",
 		surfaceStrong: "#081614",
 		accent: "#8de3c7",
@@ -71,7 +70,7 @@ const palettes: Palette[] = [
 		glow: "rgba(94, 220, 185, 0.34)",
 	},
 	{
-		name: "Amber Static",
+		name: "琥珀静电",
 		surface: "#342112",
 		surfaceStrong: "#171006",
 		accent: "#ffd27a",
@@ -123,7 +122,7 @@ function resetPanel() {
 
 $: palette = palettes[paletteIndex];
 $: ctaLabel =
-	count === 0 ? "Click once" : count > 6 ? "Keep going" : "One more";
+	count === 0 ? "先点一下" : count > 6 ? "继续点" : "再来一次";
 $: resetDisabled = count === 0 && paletteIndex === 0;
 $: panelStyle = [
 	`--break-surface:${palette.surface}`,
@@ -137,14 +136,14 @@ $: panelStyle = [
 ].join(";");
 </script>
 
-<section class="break-card" style={panelStyle} aria-label="Bored click mini game">
+<section class="break-card" style={panelStyle} aria-label="歇一会互动卡片">
 	<div class="mesh"></div>
 	<div class="glow-orb"></div>
 
 	<div class="content">
 		<div class="copy">
-			<p class="eyebrow">Interactive Corner</p>
-			<h2>Take a tiny break</h2>
+			<p class="eyebrow">互动角落</p>
+			<h2>休息一下</h2>
 			<p class="mood">{mood}</p>
 
 			{#key lineKey}
@@ -158,7 +157,7 @@ $: panelStyle = [
 					{ctaLabel}
 				</button>
 				<button type="button" class="ghost-btn" on:click={cyclePalette}>
-					Shift palette
+					切换配色
 				</button>
 				<button
 					type="button"
@@ -166,14 +165,14 @@ $: panelStyle = [
 					on:click={resetPanel}
 					disabled={resetDisabled}
 				>
-					Reset
+					重置
 				</button>
 			</div>
 		</div>
 
 		<aside class="meta">
 			<div class="stat-card">
-				<span class="meta-label">Clicks</span>
+				<span class="meta-label">点击次数</span>
 
 				{#key countKey}
 					<strong class="stat-value" in:scale={{ start: 0.85, duration: 170 }}>
@@ -183,13 +182,13 @@ $: panelStyle = [
 
 				<span class="meta-copy">
 					{count === 0
-						? "The counter wakes up on the first click."
-						: "A very small measurable win."}
+						? "第一次点击后，计数器就会醒过来。"
+						: "一个很小、但看得见的进展。"}
 				</span>
 			</div>
 
 			<div class="palette-card">
-				<span class="meta-label">Palette</span>
+				<span class="meta-label">当前配色</span>
 				<strong class="palette-name">{palette.name}</strong>
 				<div class="swatches" aria-hidden="true">
 					{#each [palette.accent, palette.accentSoft, palette.surfaceStrong] as swatch}

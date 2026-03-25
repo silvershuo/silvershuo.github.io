@@ -15,8 +15,16 @@ export function AdmonitionComponent(properties, children, type) {
 		return h(
 			"div",
 			{ class: "hidden" },
-			'Invalid admonition directive. (Admonition directives must be of block type ":::note{name="name"} <content> :::")',
+			'无效的提示块指令。（提示块必须使用块级语法，如 ":::note{name="name"} <content> :::"）',
 		);
+
+	const titleMap = {
+		note: "注记",
+		tip: "提示",
+		important: "重要",
+		warning: "警告",
+		caution: "注意",
+	};
 
 	let label = null;
 	if (properties?.["has-directive-label"]) {
@@ -27,7 +35,7 @@ export function AdmonitionComponent(properties, children, type) {
 	}
 
 	return h("blockquote", { class: `admonition bdm-${type}` }, [
-		h("span", { class: "bdm-title" }, label ? label : type.toUpperCase()),
+		h("span", { class: "bdm-title" }, label ? label : titleMap[type] || type),
 		...children,
 	]);
 }

@@ -1,17 +1,18 @@
 # Master Progress
 
 ## Goal
-Integrate the `bored-click-site` mini interaction into this Astro site as a polished internal page.
+将个人网站的所有公开可见文案统一本地化为自然中文，并覆盖此前加入的迷你互动页面。
 
 ## Acceptance Criteria
-- Inspect the current project structure before implementation.
-- Add a sensible internal route and make it discoverable from the site navigation.
-- Rebuild the mini interaction in the site stack with the original loop: click for a line, switch colors, reset, and count clicks.
-- Keep the styling aligned with the main site rather than copying the standalone prototype verbatim.
-- Run validation/build checks and commit the result.
+- 先检查站点结构，明确所有仍然面向访客显示的英文页面、组件和内容。
+- 将站点配置、导航、页面文案、组件文案、辅助无障碍文本与已发布内容翻译为自然中文。
+- 将此前加入的 mini interactive page 一并纳入本次本地化，不改变既有样式和交互逻辑。
+- 保留品牌名、专有名词与外部平台名称的合理写法。
+- 运行相关验证与构建检查，并修复本次改动引入的问题。
+- 提交改动并推送到 `origin/main`。
 
 ## Checkpoints
-- [x] Inspected the Astro site structure and the source mini site.
-- [x] Implemented the integrated page and component.
-- [x] Ran validation/build checks.
-- [ ] Committed the changes.
+- [x] 完成站点结构与英文文案盘点。
+- [x] 完成共享配置、页面框架与组件文案的中文化。
+- [x] 完成页面内容与示例文章的中文化。
+- [ ] 完成验证、构建、提交与推送。
