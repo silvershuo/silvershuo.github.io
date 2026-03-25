@@ -12,6 +12,6 @@ Integrate the `bored-click-site` mini interaction into this Astro site as a poli
 
 ## Checkpoints
 - [x] Inspected the Astro site structure and the source mini site.
-- [ ] Implemented the integrated page and component.
-- [ ] Ran validation/build checks.
+- [x] Implemented the integrated page and component.
+- [x] Ran validation/build checks.
 - [ ] Committed the changes.
